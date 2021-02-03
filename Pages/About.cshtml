@@ -1,0 +1,32 @@
+﻿@page
+@model Ceramics.Pages.AboutModel
+
+@{
+    ViewData["Title"] = "Customer Statistics";
+}
+
+<h2>Customer Statistics</h2>
+
+<table>
+    <tr>
+        <th>
+            Order Date &nbsp
+        </th>
+        
+        <th>
+            Customers
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Customer)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @item.CustomerCount
+            </td>
+        </tr>
+    }
+</table>

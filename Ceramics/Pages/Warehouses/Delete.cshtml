@@ -1,0 +1,40 @@
+﻿@page
+@model Ceramics.Pages.Warehouses.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>WarehouseLocation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WarehouseLocation.ChemID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WarehouseLocation.ChemID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WarehouseLocation.Location)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WarehouseLocation.Location)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WarehouseLocation.WarehouseLocationID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WarehouseLocation.WarehouseLocationID)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="WarehouseLocation.ID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

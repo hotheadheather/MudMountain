@@ -1,0 +1,92 @@
+﻿
+
+@page
+@model Ceramics.Models.Chemistry.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Chemistry</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.ChemCompSort"
+                   asp-route-currentFilter="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.Chemistry[0].ChemComp)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Chemistry[0].ColorID)
+            </th>
+
+
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.ChemAbbrevSort"
+                   asp-route-currentFilter="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.Chemistry[0].ChemAbbrev)
+                </a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Chemistry)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChemComp)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ColorID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChemAbbrev)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ChemID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ChemID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ChemID">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.Chemistry.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Chemistry.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Chemistry.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Chemistry.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
